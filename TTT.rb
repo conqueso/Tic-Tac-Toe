@@ -1,4 +1,28 @@
+
 board = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
+
+
+def show(board)
+  dashes = 1
+  board.each do |line|
+    10.times {print ' '}
+    bars = 1
+    line.each do |e|
+      print e
+      print '|' if bars < 3
+      bars += 1
+    end
+    puts
+    10.times {print ' '}
+    print '- - - ' if dashes < 3
+    puts
+    dashes += 1
+  end
+end
+
+puts
+puts
+show(board)
 
 move_count = 1
 
@@ -23,6 +47,8 @@ until ((board[0][0] == board[0][1] && board[0][1] == board[0][2]) && board[0][2]
       if $c > 0 && $c < 4
         break
       end
+      puts
+      puts
       puts "****please enter a valid column number****"
       puts
     end
@@ -41,26 +67,17 @@ until ((board[0][0] == board[0][1] && board[0][1] == board[0][2]) && board[0][2]
     location = board[($r-1)][$c-1]
 
     if location != ' '
-      puts "you can't go there!"
+      puts
+      puts
+      puts "you can't go there!!!!!!!!"
     else
       board[($r-1)][$c-1] = p
       move_count += 1  
     end
+    
+    show(board)
 
-    board.each do |line|
-      count = 1
-      line.each do |e|
-        print e
-        print '|' if count < 3
-        count += 1      
-      end
-      count = 1
-      puts
-      print '- - - ' if count < 2
-      puts
-      count += 1
-    end
-  end
+ end
 
 if move_count.even?
   p = 'X'
@@ -73,16 +90,4 @@ puts
 puts "#{p}s win!!!!!!!!"
 puts
 
-board.each do |line|
-  count = 1
-  line.each do |e|
-    print e
-    print '|' if count < 3
-    count += 1      
-  end
-  count = 1
-  puts
-  print '- - - ' if count < 3
-  puts
-  count += 1
-end
+show(board)
